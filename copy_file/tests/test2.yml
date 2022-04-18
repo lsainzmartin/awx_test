@@ -1,5 +1,5 @@
 ---
 - hosts: nodes
-  remote_user: root
+  remote_user: ansible
   roles:
     - copy_file
