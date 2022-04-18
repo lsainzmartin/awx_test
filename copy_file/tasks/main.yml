@@ -24,27 +24,27 @@
     - 50unattended-upgrades
   when: ansible_os_family == 'Debian'
 
-# install firewalld
-- name: Install firewalld
-  apt:
-    name: firewalld
-    state: present
-  when: ansible_os_family == 'Debian'
-
-# Configuring a firewall with `firewalld` on RHEL.
-- name: Ensure firewalld is running.
-  service:
-    name: firewalld
-    state: started
-
-- name: Configure open ports with firewalld.
-  firewalld:
-    state: "{{ item.state }}"
-    port: "{{ item.port }}"
-    zone: external
-    immediate: yes
-    permanent: yes
-  with_items:
-    - { state: 'enabled', port: '22/tcp' }
-    - { state: 'enabled', port: '80/tcp' }
-    - { state: 'enabled', port: '123/udp' }
+## install firewalld
+#- name: Install firewalld
+#  apt:
+#    name: firewalld
+#    state: present
+#  when: ansible_os_family == 'Debian'
+#
+## Configuring a firewall with `firewalld` on RHEL.
+#- name: Ensure firewalld is running.
+#  service:
+#    name: firewalld
+#    state: started
+#
+#- name: Configure open ports with firewalld.
+#  firewalld:
+#    state: "{{ item.state }}"
+#    port: "{{ item.port }}"
+#    zone: external
+#    immediate: yes
+#    permanent: yes
+#  with_items:
+#    - { state: 'enabled', port: '22/tcp' }
+#    - { state: 'enabled', port: '80/tcp' }
+#    - { state: 'enabled', port: '123/udp' }
