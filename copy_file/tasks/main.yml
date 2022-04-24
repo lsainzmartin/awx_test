@@ -5,24 +5,24 @@
     src: /etc/hosts
     dest: /tmp/{{ nombre_fichero }}
 
-# Automating updates for Debian systems.
-- name: Install unattended upgrades package.
-  apt:
-    name: unattended-upgrades
-    state: present
-  when: ansible_os_family == 'Debian'
-
-- name: Copy unattended-upgrades configuration files in place.
-  template:
-    src: "../templates/{{ item }}.j2"
-    dest: "/etc/apt/apt.conf.d/{{ item }}"
-    owner: root
-    group: root
-    mode: 0644
-  with_items:
-    - 20auto-upgrades
-    - 50unattended-upgrades
-  when: ansible_os_family == 'Debian'
+## Automating updates for Debian systems.
+#- name: Install unattended upgrades package.
+#  apt:
+#    name: unattended-upgrades
+#    state: present
+#  when: ansible_os_family == 'Debian'
+#
+#- name: Copy unattended-upgrades configuration files in place.
+#  template:
+#    src: "../templates/{{ item }}.j2"
+#    dest: "/etc/apt/apt.conf.d/{{ item }}"
+#    owner: root
+#    group: root
+#    mode: 0644
+#  with_items:
+#    - 20auto-upgrades
+#    - 50unattended-upgrades
+#  when: ansible_os_family == 'Debian'
 
 - name: ensure the jenkins apt repository key is installed
   apt_key: url=https://pkg.jenkins.io/debian-stable/jenkins.io.key state=present
